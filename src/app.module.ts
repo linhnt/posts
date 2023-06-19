@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from './posts/posts.module';
+import { HttpModule } from '@nestjs/axios';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthCheckController } from './health-check.controller';
 
 @Module({
   imports: [
@@ -15,6 +18,9 @@ import { PostsModule } from './posts/posts.module';
       synchronize: true,
     }),
     PostsModule,
+    TerminusModule,
+    HttpModule,
   ],
+  controllers: [HealthCheckController]
 })
 export class AppModule {}
